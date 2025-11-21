@@ -1,5 +1,5 @@
 <?php
-
+// 私がリーダーだ！
 namespace App\Http\Controllers;
 
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
