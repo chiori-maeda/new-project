@@ -1,35 +1,85 @@
 @extends('layouts.app')
 
-@section('head')
-<style>
-.register2 {
-  background-color: black;
-}
-</style>
-@endsection
-
 @section('content')
 <style>
-.register-body {
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #333; 
+  font-family: 'Segoe UI', sans-serif;
+  color: #333;
+}
+
+.background-layer {
   background-image: url('{{ asset('images/background.jpg') }}');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  background-attachment: fixed;
+  min-height: 100vh;
+  padding: 60px 0;
+}
+
+.card {
+  background-color: rgba(255, 255, 255, 0.85);
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+  backdrop-filter: blur(5px);
+}
+
+.card-header {
+  font-size: 1.5rem;
+  font-weight: bold;
+  background-color: transparent;
+  border-bottom: none;
+  text-align: center;
+}
+
+.btn-primary {
+  background-color: #e63946;
+  border: none;
+  padding: 10px 20px;
+  font-weight: bold;
+  border-radius: 25px;
+  transition: background-color 0.3s ease;
+}
+.btn-primary:hover {
+  background-color: #d62828;
+}
+
+.snowflake {
+  position: fixed;
+  top: -10px;
+  z-index: 9999;
+  color: white;
+  font-size: 1.2em;
+  user-select: none;
+  pointer-events: none;
+  animation: fall linear infinite;
+}
+
+@keyframes fall {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(360deg);
+    opacity: 0;
+  }
 }
 </style>
-<div class="register2">
-    <div class="container">
+
+<div class="background-layer">
+  <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
-
-                <div class="register-body" style="background-image: url('{{ asset('images/background.jpg') }}')">
-                    <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
-                        @csrf
-
-                        <div class="row mb-3">
+      <div class="col-md-8">
+        <div class="card">
+          <div class="card-header">{{ __('Register') }}</div>
+          <div class="card-body">
+            <form method="POST" action="{{ route('register') }}">
+              @csrf
+              <div class="row mb-3">
                             <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
 
                             <div class="col-md-6">
@@ -86,13 +136,21 @@
                                 </button>
                             </div>
                         </div>
-                    </form>
-                </div>
-                </div>
-            </div>
+            </form>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 </div>
-</div>
-<style></style>
+
+@for ($i = 0; $i < 30; $i++)
+  <div class="snowflake" style="
+    left: {{ rand(0, 100) }}vw;
+    animation-duration: {{ rand(10, 30) }}s;
+    font-size: {{ rand(10, 20) }}px;
+  ">
+    ❄
+  </div>
+@endfor
 @endsection
