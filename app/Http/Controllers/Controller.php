@@ -1,4 +1,4 @@
-<?php  //行と地位は比例する
+<?php  //行
 // 私がリーダーだ！
 namespace App\Http\Controllers;
 
