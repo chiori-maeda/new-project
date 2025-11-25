@@ -1,13 +1,31 @@
 @extends('layouts.app')
 
+@section('head')
+<style>
+.register2 {
+  background-color: black;
+}
+</style>
+@endsection
+
 @section('content')
-<div class="container">
+<style>
+.register-body {
+  background-image: url('{{ asset('images/background.jpg') }}');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+</style>
+<div class="register2">
+    <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('Register') }}</div>
 
-                <div class="card-body">
+                <div class="register-body" style="background-image: url('{{ asset('images/background.jpg') }}')">
+                    <div class="card-body">
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
 
@@ -70,8 +88,11 @@
                         </div>
                     </form>
                 </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
+</div>
+<style></style>
 @endsection
