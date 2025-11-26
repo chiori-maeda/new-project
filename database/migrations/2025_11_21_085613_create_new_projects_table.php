@@ -17,7 +17,8 @@ return new class extends Migration
         $table->unsignedBigInteger('user_id');
         $table->string('title',50);
         $table->string('cost',50);
-        $table->text('body',50);
+        $table->text('body');
+        $table->string('image',50);
 
         $table->timestamps();
 
