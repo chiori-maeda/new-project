@@ -11,14 +11,21 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('new_projects', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->string('avatar', 50)->nullable();
-            $table->string('password');
-            $table->timestamps();
+       Schema::create('posts',function(Blueprint $table)
+       {
+        $table->id();
+        $table->unsignedBigInteger('user_id');
+        $table->string('title',50);
+        $table->string('cost',50);
+        $table->text('body',50);
+
+        $table->timestamps();
+
+        $table->foreign('user_id')->references('id')->on('users');
+
         });
+
+        
     }
 
     /**
