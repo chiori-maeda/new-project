@@ -1,7 +1,7 @@
 @extends('layouts.app')
- 
+
 @section('title', 'Home')
- 
+
 @section('content')
     @forelse ($all_posts as $post)
     <div class="mt-2 border border-2 rounded p-4">
@@ -15,11 +15,11 @@
             <a href="#"><i class="fa-solid fa-pen">Edit</i></a>
         
 
-           <form action="#" method="POST">
-            @csrf
-            @method('DELETE')
-            <button type="submit" class="btn btn_danger">Delete</button>
-           </form>
+            <form action="#" method="POST">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn btn_danger">Delete</button>
+            </form>
 
         </div>
         @else
@@ -34,10 +34,8 @@
         <div class="text-center" style="margin-top: 100px;">
           <h2 class="text-secondary">No sales yet</h2>
 
-          <a href="#" class="text-decoration-none">Create New sales</a>
-        </div>
-    @endempty
-    @endforelse
+    <a href="#" class="text-decoration-none">Create New sales</a>
+</div>
+@endforelse
 
 @endsection
- 
