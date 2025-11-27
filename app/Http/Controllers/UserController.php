@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 class UserController extends Controller
 {
     private $user;
+    const LOCAL_STRAGE_FOLDER = 'avatars/';
 
 
     public function __construct(User $user) {
@@ -53,23 +54,23 @@ class UserController extends Controller
        
     }
 
-    // public function saveAvatar($avatar) {
-    //     // Change the name of the avatar to CURRENT TIME to avoid overwriting
+    public function saveAvatar($avatar) {
+        // Change the name of the avatar to CURRENT TIME to avoid overwriting
        
-    //     $avatar_name = time() . "." . $avatar->extension();
+        $avatar_name = time() . "." . $avatar->extension();
 
-    //     // Save the avatar to storage/app/pbulic/images/
-    //     $avatar->storeAs(self::LOCAL_STORAGE_FOLDER , $avatar_name);
-    //     return $avatar_name;
+        // Save the avatar to storage/app/pbulic/images/
+        $avatar->storeAs(self::LOCAL_STORAGE_FOLDER , $avatar_name);
+        return $avatar_name;
     }
 
-        // public function deleteAvatar($avatar) {
-        // $avatar_path = self::LOCAL_STORAGE_FOLDER .$avatar;
-        // // Sample:$image_past = 'avatars/172364947.jpg'
+        public function deleteAvatar($avatar) {
+        $avatar_path = self::LOCAL_STORAGE_FOLDER .$avatar;
+        // Sample:$image_past = 'avatars/172364947.jpg'
 
-        // if(Storage::disk('public')->exists($avatar_path)){
-        //     Storage::disk('public')->delete($avatar_path);
-        // }
+        if(Storage::disk('public')->exists($avatar_path)){
+            Storage::disk('public')->delete($avatar_path);
+        }
        
     }
 

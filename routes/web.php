@@ -22,11 +22,11 @@ Route::group(['middleware' => 'auth'], function(){
 
     });
      
-    Route::group(['prefix' => 'comment', 'as' => 'comment.'], function(){
-        Route::post('/{post_id}store',[CommentController::class,'store'])->name('store');
-        Route::delete('/{post_id}destroy',[CommentController::class,'destroy'])->name('destroy');    
+    // Route::group(['prefix' => 'comment', 'as' => 'comment.'], function(){
+    //     Route::post('/{post_id}store',[CommentController::class,'store'])->name('store');
+    //     Route::delete('/{post_id}destroy',[CommentController::class,'destroy'])->name('destroy');    
 
-    });
+    // });
 
     Route::group(['prefix' => 'profile', 'as' => 'profile'],function(){
         Route::get('/', [UserController::class,'show'])->name('show');

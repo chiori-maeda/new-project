@@ -55,6 +55,7 @@
     <div class="row justify-content-center">
         <div class="col-md-6">
             <div class="card p-3">
+              <h3 class="text-center fw-bold">{{ __('Login') }}</h3>
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
@@ -63,7 +64,7 @@
 
                             <!-- Usernameに変える -->
                             <div class="col-4 input-group mb-3">
-                                <span class="input-group-text"><i class="fa-solid fa-user"></i></span>
+                                <span class="input-group-text"><i class="fa-regular fa-envelope"></i></span>
                                 <input id="email" type="text" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="email">
 
                                 @error('email')
@@ -89,13 +90,13 @@
 
                         <div class="row mt-3 mx-2">
                             <div class="col">
-                                <button type="submit" class="btn btn-danger w-100">
+                                <button type="submit" class="btn btn-danger btn-lg fw-bold rounded-pill w-100">
                                     {{ __('Login') }}
                                 </button>
 
-                                <!-- Registrationに繋がるようにする -->
+                            
                                 @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="#">
+                                    <a class="btn btn-link" href="register">
                                         {{ __('Create Your Account') }}
                                     </a>
                                 @endif

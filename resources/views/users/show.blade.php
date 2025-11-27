@@ -14,7 +14,7 @@
 
           <!-- icon -->
           @if ($user->avatar)
-            <img src="#" alt="{{ $user->avatar }}" class="rounded-circle img-thumbnail w-100 mb-3">
+            <img src="{{ asset('storage/avatars/' .$user->avatar) }}" alt="{{ $user->avatar }}" class="rounded-circle img-thumbnail w-100 mb-3">
           @else
             <i class="fa-light fa-face-smile"></i>
           @endif
@@ -28,7 +28,7 @@
           @endif
 
           <!-- Edit buttun -->
-          <a href="#" class="btn btn-outline-primary"><i class="fa-solid fa-pencil"></i>Edit Profile</a>
+          <a href="edit" class="btn btn-outline-primary"><i class="fa-solid fa-pencil"></i>Edit Profile</a>
 
         </div>
       </div>
@@ -46,7 +46,7 @@
        <!-- Edit Delete button-->
         <!-- @if(Auth::id() === $post->user_id)
         <div class="d-flex gap-2 mt-3">
-          <a href="#" class="btn btn-warning btn-sm">Edit</a>
+          <a href="posts.edit" class="btn btn-warning btn-sm">Edit</a>
 
           <form action="#" method="post">
             @csrf
