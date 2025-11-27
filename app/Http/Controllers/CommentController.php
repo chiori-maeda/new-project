@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Comment;
 
-class ComentController extends Controller
+class CommentController extends Controller
 {
   private $comment;
 
