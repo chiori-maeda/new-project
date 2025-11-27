@@ -44,7 +44,7 @@
        @endif
 
        <!-- Edit Delete button-->
-        <!-- @if(Auth::id() === $post->user_id)
+        @if(Auth::id() === $post->user_id)
         <div class="d-flex gap-2 mt-3">
           <a href="posts.edit" class="btn btn-warning btn-sm">Edit</a>
 
@@ -53,7 +53,7 @@
             @method('DELETE')
             <button class="btn btn-danger btn-sm">Delete</button>
           </form>
-        </div> -->
+        </div>
       </div>
      
     </div>

@@ -62,7 +62,7 @@
 
                         <div class="row mt-3 mx-2">
 
-                            <!-- Usernameに変える -->
+                           
                             <div class="col-4 input-group mb-3">
                                 <span class="input-group-text"><i class="fa-regular fa-envelope"></i></span>
                                 <input id="email" type="text" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="email">
