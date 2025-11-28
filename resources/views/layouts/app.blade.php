@@ -43,10 +43,10 @@
 
                     </ul>
 
+                    <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
                         <!-- Authentication Links -->
                         @guest
-                            {{-- 未ログイン時（Login / Register） --}}
                             @if (Route::has('login'))
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
@@ -59,12 +59,9 @@
                                 </li>
                             @endif
                         @else
-                            {{-- 投稿作成リンク --}}
-                            <li class="nav-item">
-                                <a href="{{ route('post.create') }}" class="nav-link">Create Post</a>
+                            <li class="nav-item dropdown">
+                                <a href="{{ route('post.create') }}" class="text-decoration-none nav-link">Create Post</a>
                             </li>
-
-                            {{-- アカウントメニュー --}}
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -72,13 +69,10 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    {{-- プロフィール --}}
-                                    <a href="{{ route('profile.show') }}" class="dropdown-item">Profile</a>
-
-                                    {{-- ログアウト --}}
+                                    <a href="{{ route('profile.show', Auth::user()->id) }}" class="dropdown-item">Profile</a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
-            document.getElementById('logout-form').submit();">
+                                                     document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
 
@@ -89,7 +83,6 @@
                             </li>
                         @endguest
                     </ul>
-
                 </div>
             </div>
         </nav>

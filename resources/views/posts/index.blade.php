@@ -37,10 +37,10 @@
                         {{-- Buttons --}}
                         @if (Auth::user()->id == $post->user_id)
                             <div class="mt-3 text-end">
-                                <a href="#" class="btn btn-outline-primary btn-sm me-2">
+                                <a href="{{ route('post.edit', $post->id) }}" class="btn btn-outline-primary btn-sm me-2">
                                     <i class="fa-solid fa-pen"></i> Edit
                                 </a>
-                                <form action="#" method="POST" class="d-inline">
+                                <form action="{{ route('post.destroy', $post->id) }}" method="POST" class="d-inline">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-outline-danger btn-sm">
