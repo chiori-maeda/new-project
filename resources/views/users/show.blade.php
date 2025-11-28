@@ -27,8 +27,10 @@
             <p class="text-muted">{{ $user->bio }}</p>
           @endif
 
-          <!-- Edit buttun -->
-          <a href="edit" class="btn btn-outline-primary"><i class="fa-solid fa-pencil"></i>Edit Profile</a>
+          <!-- Edit profile buttun -->
+          @if(Auth::id() === $user->id)
+          <a href="{{ route('profile.edit',$user->id) }}" class="btn btn-outline-primary"><i class="fa-solid fa-pencil"></i>Edit Profile</a>
+          @endif
 
         </div>
       </div>
@@ -39,11 +41,13 @@
       <div class="col-md-9 p-4" style="height: 100vh; overflow-y:auto;">
 
         <!-- Post -->
+
+      <!-- ＠foreatchをおく -->
        @if($post->image)
        <img src="#" alt="{{ $post->image }}" class="img-fluid rounded mb-4" style="max-height: 400px; object-fit:cover; width: 100%;">
        @endif
 
-       <!-- Edit Delete button-->
+       <!-- Edit Delete -->
         @if(Auth::id() === $post->user_id)
         <div class="d-flex gap-2 mt-3">
           <a href="posts.edit" class="btn btn-warning btn-sm">Edit</a>
@@ -55,7 +59,6 @@
           </form>
         </div>
       </div>
-     
     </div>
   </div>
 @endsection
