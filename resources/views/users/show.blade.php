@@ -23,9 +23,9 @@
           <h2 class="display-6">{{ $user->name }}</h2>
 
           <!-- Biography -->
-          @if(!empty($user->bio))
+          {{-- @if(!empty($user->bio))
             <p class="text-muted">{{ $user->bio }}</p>
-          @endif
+          @endif --}}
 
           <!-- Edit profile buttun -->
           @if(Auth::id() === $user->id)
@@ -43,12 +43,12 @@
         <!-- Post -->
 
       <!-- ＠foreatchをおく -->
-       @if($post->image)
+       {{-- @if($post->image)
        <img src="#" alt="{{ $post->image }}" class="img-fluid rounded mb-4" style="max-height: 400px; object-fit:cover; width: 100%;">
-       @endif
+       @endif --}}
 
        <!-- Edit Delete -->
-        @if(Auth::id() === $post->user_id)
+        {{-- @if(Auth::id() === $post->user_id)
         <div class="d-flex gap-2 mt-3">
           <a href="posts.edit" class="btn btn-warning btn-sm">Edit</a>
 
@@ -58,6 +58,7 @@
             <button class="btn btn-danger btn-sm">Delete</button>
           </form>
         </div>
+        @endif --}}
       </div>
     </div>
   </div>
