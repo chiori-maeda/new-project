@@ -43,7 +43,6 @@
 
                     </ul>
 
-                    
                     <ul class="navbar-nav ms-auto">
                         <!-- Authentication Links -->
                         @guest
@@ -62,7 +61,7 @@
                         @else
                             {{-- 投稿作成リンク --}}
                             <li class="nav-item">
-                                <a href="#" class="nav-link">Create Post</a>
+                                <a href="{{ route('post.create') }}" class="nav-link">Create Post</a>
                             </li>
 
                             {{-- アカウントメニュー --}}
@@ -77,13 +76,13 @@
                                     <a href="#" class="dropdown-item">Profile</a>
 
                                     {{-- ログアウト --}}
-                                    <a class="dropdown-item" href="#"
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
-                             document.getElementById('logout-form').submit();">
+            document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
 
-                                    <form id="logout-form" action="#" method="POST" class="d-none">
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
                                     </form>
                                 </div>
