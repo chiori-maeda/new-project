@@ -33,6 +33,7 @@ class PostController extends Controller{
 
      $this->post->user_id = Auth::user()->id;
      $this->post->title = $request->title;
+     $this->post->cost = $request->cost;
      $this->post->body  = $request->body;
     $this->post->image = $this->saveImage($request->image);
     $this->post->save();

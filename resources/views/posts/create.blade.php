@@ -75,6 +75,15 @@ body {
         <div class="text-danger small">{{ $message }}</div>
       @enderror
     </div>
+   
+    <!--価格設定-->
+    <div class="mb-3">
+      <label for="title" class="form-label text-secondary">Product Cost</label>
+      <input type="text" name="cost" id="cost" class="form-control" placeholder="set cost..." value="{{ old('title') }}" autofocus>
+      @error('cost')
+        <div class="text-danger small">{{ $message }}</div>
+      @enderror
+    </div>
 
     <!-- 商品説明 -->
     <div class="mb-3">
