@@ -2,12 +2,12 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-// use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Storage;
 use App\Models\Post;
 
 class PostController extends Controller{
 
-  const LOCAL_STRAGE_FOLDER = 'images/';
+  const LOCAL_STORAGE_FOLDER = 'images/';
   private $post;
 
   public function __construct(Post $post){
@@ -20,14 +20,14 @@ class PostController extends Controller{
   }
 
   public function create() {
-    return view('#');
+    return view('posts.create');
  
   }
 
   public function store(Request $request) {
     $request->validate([
-      'title'   => 'required|max50',
-      'body'    => 'required|max50',
+      'title'   => 'required|max:50',
+      'body'    => 'required|max:50',
       'image'   => 'required|mimes:jpeg,jpg,png,gif|max:1048'
     ]);
 
@@ -80,37 +80,37 @@ class PostController extends Controller{
         $post->body =$request->body;
 
         #if there is a new imagete 
-    //     if($request->image){
-    //         #delethe previous image from the 
-    //         $this->deleteImage($post->image);
+        if($request->image){
+            #delethe previous image from the 
+            $this->deleteImage($post->image);
 
-    //         #save the new image
-    //         $post->image = $this->saveImage($request->image);
-    //     }
-    //     $post->save();
+            #save the new image
+            $post->image = $this->saveImage($request->image);
+        }
+        $post->save();
 
-    //     return redirect()->route('post.show',$id);
+        return redirect()->route('post.show',$id);
        
     }
 
-    // public function deleteImage($image) {
-    //     $image_path = self::LOCAL_STORAGE_FOLDER .$image;
-    //     // Sample:$image_past = 'images/172364947.jpg'
+    public function deleteImage($image) {
+        $image_path = self::LOCAL_STORAGE_FOLDER .$image;
+        // Sample:$image_past = 'images/172364947.jpg'
 
-    //     if(Storage::disk('public')->exists($image_path)){
-    //         Storage::disk('public')->delete($image_path);
-    //     }
+        if(Storage::disk('public')->exists($image_path)){
+            Storage::disk('public')->delete($image_path);
+        }
        
-    // }
+    }
 
-    // public function destroy($id) {
-    // //   $this->post->destroy($id);
-    // //   $this->deleteImage($this->post->id);
-    // $post = $this->post->findOrFail($id);
-    // $this->deleteImage($post->image);
-    // $post->delete();
-    // return redirect()->back();  
-    // }
+    public function destroy($id) {
+    //   $this->post->destroy($id);
+    //   $this->deleteImage($this->post->id);
+    $post = $this->post->findOrFail($id);
+    $this->deleteImage($post->image);
+    $post->delete();
+    return redirect()->back();  
+    }
      
   
 }

@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 use App\Models\User;
-
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -10,9 +11,21 @@ class UserController extends Controller
     private $user;
     const LOCAL_STRAGE_FOLDER = 'avatars/';
 
+    const LOCAL_STORAGE_FOLDER = "avatars/";
+
 
     public function __construct(User $user) {
        $this->user = $user;
+    }
+
+
+    // public function index() {
+    //     $all_posts = $this->post->latest()->get();
+    //    return view('posts.index')->with('all_posts',$all_posts);
+    // }
+
+    public function create() {
+       return view('posts.create');
     }
 
         public function show() {
