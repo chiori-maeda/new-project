@@ -22,7 +22,7 @@
 <!-- コメント投稿フォーム -->
 <div class="card shadow-sm border-0 rounded mb-4">
     <div class="card-body">
-        <form action="{{ route('comment.store',$post->id) }}" method="post">
+        <form action="#" method="post">
             @csrf
             <div class="input-group">
                 <input type="text" name="comment" class="form-control" placeholder="コメントを入力..." value="{{ old('comment') }}">
