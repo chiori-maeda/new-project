@@ -14,7 +14,7 @@
 
           <!-- icon -->
           @if ($user->avatar)
-            <img src="#" alt="{{ $user->avatar }}" class="rounded-circle img-thumbnail w-100 mb-3">
+            <img src="{{ asset('storage/avatars/' .$user->avatar) }}" alt="{{ $user->avatar }}" class="rounded-circle img-thumbnail w-100 mb-3">
           @else
             <i class="fa-light fa-face-smile"></i>
           @endif
@@ -27,8 +27,10 @@
             <p class="text-muted">{{ $user->bio }}</p>
           @endif
 
-          <!-- Edit buttun -->
-          <a href="#" class="btn btn-outline-primary"><i class="fa-solid fa-pencil"></i>Edit Profile</a>
+          <!-- Edit profile buttun -->
+          @if(Auth::id() === $user->id)
+          <a href="{{ route('profile.edit',$user->id) }}" class="btn btn-outline-primary"><i class="fa-solid fa-pencil"></i>Edit Profile</a>
+          @endif
 
         </div>
       </div>
@@ -39,23 +41,24 @@
       <div class="col-md-9 p-4" style="height: 100vh; overflow-y:auto;">
 
         <!-- Post -->
+
+      <!-- ＠foreatchをおく -->
        @if($post->image)
        <img src="#" alt="{{ $post->image }}" class="img-fluid rounded mb-4" style="max-height: 400px; object-fit:cover; width: 100%;">
        @endif
 
-       <!-- Edit Delete button-->
-        <!-- @if(Auth::id() === $post->user_id)
+       <!-- Edit Delete -->
+        @if(Auth::id() === $post->user_id)
         <div class="d-flex gap-2 mt-3">
-          <a href="#" class="btn btn-warning btn-sm">Edit</a>
+          <a href="posts.edit" class="btn btn-warning btn-sm">Edit</a>
 
           <form action="#" method="post">
             @csrf
             @method('DELETE')
             <button class="btn btn-danger btn-sm">Delete</button>
           </form>
-        </div> -->
+        </div>
       </div>
-     
     </div>
   </div>
 @endsection

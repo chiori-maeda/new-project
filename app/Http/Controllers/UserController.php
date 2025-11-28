@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 class UserController extends Controller
 {
     private $user;
+    const LOCAL_STRAGE_FOLDER = 'avatars/';
 
     const LOCAL_STORAGE_FOLDER = "avatars/";
 
