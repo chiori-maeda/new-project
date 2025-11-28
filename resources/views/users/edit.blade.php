@@ -32,7 +32,7 @@
   <!-- Name -->
   <div class="mb-3">
     <label for="name" class="form-lavel text-secondary">Name</label>
-    <input type="text" name="name" id="name" class="form-control" value="{{ old('name,$user->name') }}" autofocus>
+    <input type="text" name="name" id="name" class="form-control" value="{{ old('name',$user->name) }}" autofocus>
 
     {{-- Error --}}
    @error('name')
