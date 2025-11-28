@@ -10,7 +10,7 @@
         <h4 class="h6 text-secondary">{{ $post->user->name }}</h4>
         <p>{{ $post->body }}</p>
 
-        @if (Auth::user()->id==$post->user_id)
+        @if (Auth::user()->id == $post->user_id)
          <div class="mt-2 text-end">
             <a href="#" class="btn btn-primary btn-sm"><i class="fa-solid fa-pen">Edit</i></a>
         
