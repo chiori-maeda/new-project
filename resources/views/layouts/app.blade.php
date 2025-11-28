@@ -73,7 +73,7 @@
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                     {{-- プロフィール --}}
-                                    <a href="#" class="dropdown-item">Profile</a>
+                                    <a href="{{ route('profile.show') }}" class="dropdown-item">Profile</a>
 
                                     {{-- ログアウト --}}
                                     <a class="dropdown-item" href="{{ route('logout') }}"
