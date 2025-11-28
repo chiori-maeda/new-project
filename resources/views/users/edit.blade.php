@@ -1,58 +1,98 @@
 @extends('layouts.app')
- 
+
 @section('title', 'Edit Profile')
- 
+
 @section('content')
-<form action="{{ 'profile.update' }}" method="post" enctype="multipart/form-data">
-  @esrf
-  @method('PATCH')
+<style>
+/* 雪アニメーション */
+.snowflake {
+  position: fixed;
+  top: -10px;
+  z-index: 9999;
+  color: white;
+  font-size: 1.2em;
+  user-select: none;
+  pointer-events: none;
+  animation: fall linear infinite;
+}
+@keyframes fall {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+</style>
+<div class="snow-container bg-dark text-light py-5" style="min-height:100vh; position:relative; overflow:hidden;">
+    <div class="container">
+        <div class="card shadow-lg p-4 mx-auto" style="max-width:600px; background-color:rgba(255,255,255,0.9);">
+            <h2 class="mb-4 text-center text-dark">Edit Profile</h2>
 
-  <!-- Avatar -->
-  <div class="row mt-2 mb-3">
-    <div class="col-4">
-      @if($user->avatar)
-      <img src="{{ assert('strage/avatars/' .$user->avatar) }}" alt="{{ $user->avatar }}" class="img-thumbnail w-100">
-      @else
-      <i class="fa-thin fa-user-secret" fa-10x d-blok text-center></i>
-      @endif
+            <form action="{{ route('profile.update', $user->id) }}" method="post" enctype="multipart/form-data">
+                @csrf
+                @method('PATCH')
 
-      <input type="file" name="avatar" class="form-control mt-1" aria-activedescendant="avatar-info">
-      <div class="form-text" id="avatar-info">
-        Acceptable formats are jpeg,jpg,png,gif,only. <br>
-        Maximum file size is 1048kb.
-      </div>
+                <!-- Avatar -->
+                <div class="mb-3 text-center">
+                    @if($user->avatar)
+                        <img src="{{ asset('storage/avatars/' .$user->avatar) }}" 
+                             alt="{{ $user->avatar }}" 
+                             class="rounded-circle img-thumbnail mb-3" 
+                             style="width:120px; height:120px; object-fit:cover;">
+                    @else
+                        <i class="fa-solid fa-user-circle fa-5x text-secondary mb-3"></i>
+                    @endif
 
-      {{-- Error --}}
-      @error('avatar')
-      <div class="text-danger small">{{ $message }}</div>
-     @enderror
+                    <input type="file" name="avatar" class="form-control">
+                    <div class="form-text">
+                        Acceptable formats: jpeg, jpg, png, gif. Max size: 1048kb.
+                    </div>
+                    @error('avatar')
+                        <div class="text-danger small">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <!-- Name -->
+                <div class="mb-3">
+                    <label for="name" class="form-label text-dark">Name</label>
+                    <input type="text" name="name" id="name" class="form-control" 
+                           value="{{ old('name', $user->name) }}" autofocus>
+                    @error('name')
+                        <div class="text-danger small">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <!-- Email -->
+                <div class="mb-3">
+                    <label for="email" class="form-label text-dark">Email</label>
+                    <input type="email" name="email" id="email" class="form-control" 
+                           value="{{ old('email', $user->email) }}">
+                    @error('email')
+                        <div class="text-danger small">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <div class="text-center">
+                    <button type="submit" class="btn btn-warning px-5">Save</button>
+                </div>
+            </form>
+        </div>
     </div>
+
+    <!-- Snowflakes -->
+    @for ($i = 0; $i < 30; $i++)
+  <div class="snowflake" style="
+    left: {{ rand(0, 100) }}vw;
+    animation-duration: {{ rand(10, 30) }}s;
+    font-size: {{ rand(10, 20) }}px;
+  ">
+    ❄
   </div>
-
-  <!-- Name -->
-  <div class="mb-3">
-    <label for="name" class="form-lavel text-secondary">Name</label>
-    <input type="text" name="name" id="name" class="form-control" value="{{ old('name,$user->name') }}" autofocus>
-
-    {{-- Error --}}
-   @error('name')
-   <div class="text-danger small">{{ $message }}</div>     @enderror
-  </div>
-
-  <!-- Email -->
-  <div class="mb-3">
-    <label for="email" class="form-label text-secondary">Email</label>
-    <input type="email" name="email" id="email" class="form-control" value="{{ old('email',$user->email) }}">
-
-    {{-- Error --}}
-    @error('email')
-    <div class="text-danger small">{{ $message }}</div>
-    @enderror
-  </div>
-
-  <button type="submit" class="btn btn-warning px-5">Save</button>
-
-</form>
-    
+@endfor
+</div>
 @endsection
+
  
